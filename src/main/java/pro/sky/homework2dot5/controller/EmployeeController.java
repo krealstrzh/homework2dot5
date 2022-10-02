@@ -12,10 +12,11 @@ import java.util.Collection;
 @RestController
 @RequestMapping("/employee")
 public class EmployeeController {
-    public final EmployeeService employeeService;
+    public final EmployeeInterface employeeService;
 
-    public EmployeeController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeInterface employeeService) {
         this.employeeService = employeeService;
+        employeeService.addAll();
     }
 
     @GetMapping ("/add")
@@ -36,5 +37,10 @@ public class EmployeeController {
     @GetMapping ("/list")
     public Collection<Employee> findAll() {
         return employeeService.findAll();
+    }
+
+    @GetMapping("/add-all")
+    public void addAll () {
+        employeeService.addAll();
     }
 }
