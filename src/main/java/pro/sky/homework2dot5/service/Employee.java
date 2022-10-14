@@ -1,6 +1,11 @@
 package pro.sky.homework2dot5.service;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Locale;
 import java.util.Objects;
+
+import static org.apache.commons.lang3.StringUtils.*;
 
 public class Employee {
     private String lastName;
@@ -9,8 +14,8 @@ public class Employee {
     private int salary;
 
     public Employee (String lastName, String firstName) {
-        this.lastName = lastName;
-        this.firstName = firstName;
+        this.lastName = capitalize(lastName.toLowerCase());
+        this.firstName = capitalize(firstName.toLowerCase());
     }
 
     public String getLastName() {

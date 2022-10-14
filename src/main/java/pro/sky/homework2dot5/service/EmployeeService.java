@@ -1,7 +1,13 @@
 package pro.sky.homework2dot5.service;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import pro.sky.homework2dot5.exceptions.EmployeeAlreadyAddedException;
+import pro.sky.homework2dot5.exceptions.EmployeeNotFoundException;
+import pro.sky.homework2dot5.exceptions.InvalidInputException;
 
 import java.util.*;
+
+import static org.apache.commons.lang3.StringUtils.*;
 
 @Service
 public class EmployeeService implements EmployeeInterface {
@@ -13,6 +19,7 @@ public class EmployeeService implements EmployeeInterface {
 
     @Override
     public Employee addEmployee(String firstName, String lastName) throws EmployeeAlreadyAddedException {
+        validationOfInput(firstName, lastName);
         Employee employee = new Employee(lastName, firstName);
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Employee already added :(");
@@ -23,6 +30,7 @@ public class EmployeeService implements EmployeeInterface {
 
     @Override
     public Employee deleteEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
+        validationOfInput(firstName, lastName);
         Employee employee = new Employee(lastName, firstName);
         if (employees.containsKey(employee.getFullName())) {
            return employees.remove(employee.getFullName());
@@ -33,6 +41,7 @@ public class EmployeeService implements EmployeeInterface {
 
     @Override
     public Employee findEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
+        validationOfInput(firstName, lastName);
         Employee employee = new Employee(lastName, firstName);
         if (employees.containsKey(employee.getFullName())) {
             return employees.get(employee.getFullName());
@@ -44,6 +53,12 @@ public class EmployeeService implements EmployeeInterface {
     @Override
     public Collection<Employee> findAll() {
         return Collections.unmodifiableCollection(employees.values());
+    }
+
+    private void validationOfInput(String firstName, String lastName) {
+        if (!isAlpha(firstName) && !isAlpha(lastName)) {
+            throw new InvalidInputException();
+        }
     }
 
     public void addAll () {

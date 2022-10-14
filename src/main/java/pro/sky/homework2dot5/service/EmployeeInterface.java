@@ -1,5 +1,8 @@
 package pro.sky.homework2dot5.service;
 
+import pro.sky.homework2dot5.exceptions.EmployeeAlreadyAddedException;
+import pro.sky.homework2dot5.exceptions.EmployeeNotFoundException;
+
 import java.util.Collection;
 
 public interface EmployeeInterface {

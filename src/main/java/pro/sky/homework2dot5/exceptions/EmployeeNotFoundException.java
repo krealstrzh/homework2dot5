@@ -1,4 +1,4 @@
-package pro.sky.homework2dot5.service;
+package pro.sky.homework2dot5.exceptions;
 
 public class EmployeeNotFoundException extends Throwable{
 
