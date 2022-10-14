@@ -61,7 +61,7 @@ public class EmployeeService implements EmployeeInterface {
         }
     }
 
-    public void addAll () {
+    public void fill () {
         Employee ivanov = new Employee("Ivanov", "Ivan", 50_000, 1);
         Employee petrov = new Employee("Petrov", "Petr", 100_000, 1);
         Employee sidorov = new Employee("Sidorov", "Alexander", 45_000, 2);

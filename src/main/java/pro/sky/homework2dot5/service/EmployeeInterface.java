@@ -14,5 +14,5 @@ public interface EmployeeInterface {
 
     Collection<Employee> findAll();
 
-    void addAll();
+    void fill();
 }

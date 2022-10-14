@@ -49,11 +49,13 @@ public class Employee {
     }
 
     public void setDepartmentNumber(int departmentNumber) {
-        if (departmentNumber <= 5 || departmentNumber > 0) {
+        int maxDepartmentId = 5;
+        int minDepartmentId = 1;
+        if (departmentNumber <= maxDepartmentId || departmentNumber >= minDepartmentId) {
             this.departmentNumber = departmentNumber;
-        } else if (departmentNumber > 5) {
+        } else if (departmentNumber > maxDepartmentId) {
             throw new IllegalArgumentException("There are only 5 departments!");
-        } else if (departmentNumber < 0) {
+        } else if (departmentNumber < minDepartmentId) {
             throw new IllegalArgumentException("Department number cannot be lower than 0!");
         }
     }
