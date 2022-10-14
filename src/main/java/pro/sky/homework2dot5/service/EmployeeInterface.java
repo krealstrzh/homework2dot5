@@ -6,7 +6,7 @@ import pro.sky.homework2dot5.exceptions.EmployeeNotFoundException;
 import java.util.Collection;
 
 public interface EmployeeInterface {
-    Employee addEmployee(String firstName, String lastName) throws EmployeeAlreadyAddedException;
+    Employee addEmployee(String firstName, String lastName, int salary, int departmentNumber) throws EmployeeAlreadyAddedException;
 
     Employee deleteEmployee(String firstName, String lastName) throws EmployeeNotFoundException;
 

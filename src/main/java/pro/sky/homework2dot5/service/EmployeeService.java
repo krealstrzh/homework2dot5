@@ -18,9 +18,9 @@ public class EmployeeService implements EmployeeInterface {
     }
 
     @Override
-    public Employee addEmployee(String firstName, String lastName) throws EmployeeAlreadyAddedException {
+    public Employee addEmployee(String firstName, String lastName, int salary, int departmentNumber) throws EmployeeAlreadyAddedException {
         validationOfInput(firstName, lastName);
-        Employee employee = new Employee(lastName, firstName);
+        Employee employee = new Employee(lastName, firstName, salary, departmentNumber);
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeAlreadyAddedException("Employee already added :(");
         }
@@ -31,9 +31,9 @@ public class EmployeeService implements EmployeeInterface {
     @Override
     public Employee deleteEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
         validationOfInput(firstName, lastName);
-        Employee employee = new Employee(lastName, firstName);
-        if (employees.containsKey(employee.getFullName())) {
-           return employees.remove(employee.getFullName());
+        String key = firstName + lastName;
+        if (employees.containsKey(key)) {
+           return employees.remove(key);
         } else {
             throw new EmployeeNotFoundException("Not found!");
         }
@@ -42,9 +42,9 @@ public class EmployeeService implements EmployeeInterface {
     @Override
     public Employee findEmployee(String firstName, String lastName) throws EmployeeNotFoundException {
         validationOfInput(firstName, lastName);
-        Employee employee = new Employee(lastName, firstName);
-        if (employees.containsKey(employee.getFullName())) {
-            return employees.get(employee.getFullName());
+        String key = firstName + lastName;
+        if (employees.containsKey(key)) {
+            return employees.remove(key);
         } else {
             throw new EmployeeNotFoundException("Not found!");
         }
@@ -56,42 +56,22 @@ public class EmployeeService implements EmployeeInterface {
     }
 
     private void validationOfInput(String firstName, String lastName) {
-        if (!isAlpha(firstName) && !isAlpha(lastName)) {
+        if (!isAlpha(firstName) || !isAlpha(lastName)) {
             throw new InvalidInputException();
         }
     }
 
     public void addAll () {
-        Employee ivanov = new Employee("Ivanov", "Ivan");
-        ivanov.setSalary(50_000);
-        ivanov.setDepartmentNumber(1);
-        Employee petrov = new Employee("Petrov", "Petr");
-        petrov.setSalary(100_000);
-        petrov.setDepartmentNumber(1);
-        Employee sidorov = new Employee("Sidorov", "Alexander");
-        sidorov.setSalary(45_000);
-        sidorov.setDepartmentNumber(2);
-        Employee nikolaev = new Employee("Nikolaev", "Nikolay");
-        nikolaev.setSalary(39_000);
-        nikolaev.setDepartmentNumber(2);
-        Employee alexandrov = new Employee("Alexandrov", "Alexander");
-        alexandrov.setSalary(70_000);
-        alexandrov.setDepartmentNumber(3);
-        Employee alexeev = new Employee("Alexeev", "Alexey");
-        alexeev.setSalary(60_000);
-        alexeev.setDepartmentNumber(3);
-        Employee sergeev = new Employee("Sergeev", "Seregey");
-        sergeev.setSalary(55_000);
-        sergeev.setDepartmentNumber(4);
-        Employee vasilyev = new Employee("Vasilyev", "Vasiliy");
-        vasilyev.setSalary(67_000);
-        vasilyev.setDepartmentNumber(4);
-        Employee olgina = new Employee("Olgina", "Olga");
-        olgina.setDepartmentNumber(5);
-        olgina.setSalary(150_000);
-        Employee xeneva = new Employee("Xeneva", "Xenia");
-        xeneva.setSalary(200_000);
-        xeneva.setDepartmentNumber(5);
+        Employee ivanov = new Employee("Ivanov", "Ivan", 50_000, 1);
+        Employee petrov = new Employee("Petrov", "Petr", 100_000, 1);
+        Employee sidorov = new Employee("Sidorov", "Alexander", 45_000, 2);
+        Employee nikolaev = new Employee("Nikolaev", "Nikolay", 39_000,2);
+        Employee alexandrov = new Employee("Alexandrov", "Alexander",70_000, 3);
+        Employee alexeev = new Employee("Alexeev", "Alexey", 60_000,3);
+        Employee sergeev = new Employee("Sergeev", "Seregey", 55_000, 4);
+        Employee vasilyev = new Employee("Vasilyev", "Vasiliy", 67_000, 4);
+        Employee olgina = new Employee("Olgina", "Olga", 150_000, 5);
+        Employee xeneva = new Employee("Xeneva", "Xenia", 200_000, 5);
         employees.put(ivanov.getFullName(), ivanov);
         employees.put(petrov.getFullName(), petrov);
         employees.put(sidorov.getFullName(), sidorov);

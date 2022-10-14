@@ -22,8 +22,8 @@ public class EmployeeController {
     }
 
     @GetMapping ("/add")
-    public Employee add(@RequestParam String firstName, @RequestParam String lastName) throws EmployeeAlreadyAddedException {
-        return employeeService.addEmployee(firstName, lastName);
+    public Employee add(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int salary, @RequestParam int departmentNumber) throws EmployeeAlreadyAddedException {
+        return employeeService.addEmployee(firstName, lastName, salary, departmentNumber);
     }
 
     @GetMapping ("/remove")
