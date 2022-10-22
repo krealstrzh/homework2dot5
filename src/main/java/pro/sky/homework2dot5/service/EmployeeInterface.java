@@ -13,6 +13,4 @@ public interface EmployeeInterface {
     Employee findEmployee(String firstName, String lastName) throws EmployeeNotFoundException;
 
     Collection<Employee> findAll();
-
-    void fill();
 }
