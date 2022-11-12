@@ -13,6 +13,7 @@ import pro.sky.homework2dot5.exceptions.InvalidInputException;
 import java.util.*;
 import java.util.stream.Stream;
 
+import static java.util.stream.Collectors.counting;
 import static org.junit.jupiter.api.Assertions.*;
 import static pro.sky.homework2dot5.service.Constants.*;
 
@@ -100,7 +101,7 @@ class EmployeeServiceTest {
 
     @Test
     void findAll() throws EmployeeAlreadyAddedException {
-        List <Employee> expected = List.of(
+        Collection <Employee> expected = List.of(
                 new Employee(CORRECT_FIRSTNAME, CORRECT_LASTNAME, CORRECT_SALARY, CORRECT_DEPNUMBER),
                 new Employee(LOWERCASE_FIRSTNAME, LOWERCASE_LASTNAME, CORRECT_SALARY, CORRECT_DEPNUMBER),
                 new Employee(UPPERCASE_FIRSTNAME, UPPERCASE_LASTNAME, CORRECT_SALARY, CORRECT_DEPNUMBER)
@@ -108,7 +109,7 @@ class EmployeeServiceTest {
         out.addEmployee(CORRECT_FIRSTNAME, CORRECT_LASTNAME, CORRECT_SALARY, CORRECT_DEPNUMBER);
         out.addEmployee(LOWERCASE_FIRSTNAME, LOWERCASE_LASTNAME, CORRECT_SALARY, CORRECT_DEPNUMBER);
         out.addEmployee(UPPERCASE_FIRSTNAME, UPPERCASE_LASTNAME, CORRECT_SALARY, CORRECT_DEPNUMBER);
-        assertEquals(out.findAll(), expected);
+        assertTrue(out.findAll().containsAll(expected));
     }
 
 }
