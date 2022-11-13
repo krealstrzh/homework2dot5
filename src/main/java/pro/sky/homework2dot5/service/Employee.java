@@ -8,16 +8,28 @@ import java.util.Objects;
 import static org.apache.commons.lang3.StringUtils.*;
 
 public class Employee {
-    private String lastName;
     private String firstName;
+    private String lastName;
     private int departmentNumber;
     private int salary;
 
-    public Employee (String lastName, String firstName, int salary, int departmentNumber) {
-        this.lastName = capitalize(lastName.toLowerCase());
+    public Employee (String firstName, String lastName, int salary, int departmentNumber) {
         this.firstName = capitalize(firstName.toLowerCase());
-        this.salary = salary;
-        this.departmentNumber = departmentNumber;
+        this.lastName = capitalize(lastName.toLowerCase());
+        if (salary >= 0) {
+            this.salary = salary;
+        } else {
+            throw new IllegalArgumentException("Salary cannot be lower than 0!");
+        }
+        int maxDepartmentId = 5;
+        int minDepartmentId = 1;
+        if  (departmentNumber > maxDepartmentId) {
+            throw new IllegalArgumentException("There are only 5 departments!");
+        } else if (departmentNumber < minDepartmentId) {
+            throw new IllegalArgumentException("Department number cannot be lower than 0!");
+        } else {
+            this.departmentNumber = departmentNumber;
+        }
     }
 
     public String getLastName() {
@@ -51,17 +63,21 @@ public class Employee {
     public void setDepartmentNumber(int departmentNumber) {
         int maxDepartmentId = 5;
         int minDepartmentId = 1;
-        if (departmentNumber <= maxDepartmentId || departmentNumber >= minDepartmentId) {
-            this.departmentNumber = departmentNumber;
-        } else if (departmentNumber > maxDepartmentId) {
+        if  (departmentNumber > maxDepartmentId) {
             throw new IllegalArgumentException("There are only 5 departments!");
         } else if (departmentNumber < minDepartmentId) {
             throw new IllegalArgumentException("Department number cannot be lower than 0!");
+        } else {
+            this.departmentNumber = departmentNumber;
         }
     }
 
     public void setSalary(int salary) {
-        this.salary = salary;
+        if (salary >= 0) {
+            this.salary = salary;
+        } else {
+            throw new IllegalArgumentException("Salary cannot be lower than 0!");
+        }
     }
 
     @Override

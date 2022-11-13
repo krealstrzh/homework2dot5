@@ -18,7 +18,6 @@ public class EmployeeController {
 
     public EmployeeController(EmployeeInterface employeeService) {
         this.employeeService = employeeService;
-        employeeService.fill();
     }
 
     @GetMapping ("/add")
@@ -39,10 +38,5 @@ public class EmployeeController {
     @GetMapping ("/list")
     public Collection<Employee> findAll() {
         return employeeService.findAll();
-    }
-
-    @GetMapping("/add-all")
-    public void addAll () {
-        employeeService.fill();
     }
 }
